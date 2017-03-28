@@ -62,4 +62,53 @@ public class Builder extends BaseConfig {
         sql = sql.replace("%WHERE%", whereCondition.toString());
         return sql;
     }
+
+    String select(String[] selectFields, String[] whereFields, String order, String limit) {
+        String sql = selectSql;
+
+        // handle select fields
+        StringBuilder selectCondition = new StringBuilder();
+        if (selectFields == null) {
+            selectCondition.append('*');
+        } else {
+            for (String s: selectFields) {
+                selectCondition.append("`"+s+"`,");
+            }
+            selectCondition.deleteCharAt(selectCondition.length()-1);
+        }
+
+        // handle where fields
+        StringBuilder whereCondition = new StringBuilder();
+        if (whereFields == null) {
+            whereCondition.append("");
+        } else {
+            whereCondition.append("WHERE ");
+            for (String s: whereFields) {
+                whereCondition.append("`"+s+"`=? AND ");
+            }
+            // todo 前面有些方法是-4
+            whereCondition.delete(whereCondition.length()-5, whereCondition.length());
+        }
+
+        // handle order
+        String orderCondition = null;
+        if (order == null)
+            orderCondition = "";
+        else
+            orderCondition = "ORDER BY "+order;
+
+        // handle limit
+        String limitCondition = null;
+        if (limit == null)
+            limitCondition = "";
+        else
+            limitCondition = "LIMIT "+limit;
+
+        sql = sql.replace("%FIELD%", selectCondition.toString());
+        sql = sql.replace("%TABLE%", TABLE_NAME);
+        sql = sql.replace("%WHERE%", whereCondition);
+        sql = sql.replace("%ORDER%", orderCondition);
+        sql = sql.replace("%LIMIT%", limitCondition);
+        return sql;
+    }
 }

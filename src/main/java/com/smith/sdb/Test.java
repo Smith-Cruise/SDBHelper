@@ -1,6 +1,7 @@
 package com.smith.sdb;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,7 +16,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        new Test().update();
+        new Test().select();
     }
 
     // test ok
@@ -55,5 +56,20 @@ public class Test {
         Map<String, Object> update = new HashMap<>();
         update.put("message", "hello");
         query.setConnection(DatabaseHelper.getConnection()).table("comment").where(where).update(update);
+    }
+
+    private void buildSelect() {
+        Builder builder = new Builder();
+        builder.setTABLE_NAME("data");
+        System.out.println(builder.select(field, field, "name desc", "2,5"));
+        System.out.println(builder.select(null, field, null, null));
+    }
+
+    private void select() {
+        Query query = new Query();
+        List<TestEntity> testList = query.setConnection(DatabaseHelper.getConnection()).table("comment").selectList(TestEntity.class);
+        for (TestEntity t: testList) {
+            System.out.println(t.getName());
+        }
     }
 }
