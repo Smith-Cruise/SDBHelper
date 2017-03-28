@@ -85,6 +85,8 @@ public class Executor {
         execute(connection, sql, objects);
     }
 
+    
+
     private static void execute(Connection connection, String sql, Object[] objects) throws SQLException {
         if (connection == null)
             throw new SQLException("connection is null");
