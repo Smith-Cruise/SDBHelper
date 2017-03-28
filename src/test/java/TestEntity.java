@@ -1,5 +1,3 @@
-package com.smith.sdb;
-
 /**
  * Created by Smith on 2017/3/28.
  */

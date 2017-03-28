@@ -1,4 +1,5 @@
-package com.smith.sdb;
+import com.smith.sdb.Builder;
+import com.smith.sdb.Query;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,23 +30,11 @@ public class Test {
         query.setConnection(DatabaseHelper.getConnection()).table("comment").insert(map);
     }
 
-    private void buildDelete() {
-        Builder builder = new Builder();
-        builder.setTABLE_NAME("data");
-        System.out.println(builder.delete(field));
-    }
-
     private static void delete() {
         Query query = new Query();
         Map<String, Object> map = new HashMap<>();
         map.put("name", "danny");
         query.setConnection(DatabaseHelper.getConnection()).table("comment").delete(map);
-    }
-
-    private void buildUpdate() {
-        Builder builder = new Builder();
-        builder.setTABLE_NAME("data");
-        System.out.println(builder.update(field, field));
     }
 
     private void update() {
@@ -56,13 +45,6 @@ public class Test {
         Map<String, Object> update = new HashMap<>();
         update.put("message", "hello");
         query.setConnection(DatabaseHelper.getConnection()).table("comment").where(where).update(update);
-    }
-
-    private void buildSelect() {
-        Builder builder = new Builder();
-        builder.setTABLE_NAME("data");
-        System.out.println(builder.select(field, field, "name desc", "2,5"));
-        System.out.println(builder.select(null, field, null, null));
     }
 
     private void select() {

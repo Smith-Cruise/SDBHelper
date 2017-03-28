@@ -50,7 +50,7 @@ public class Query {
     }
 
     public Query page(int a) {
-        this.limit = a;
+        this.page = a;
         return this;
     }
 
