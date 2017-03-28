@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="SimpleDatabaseHelper:jar">
+    <output-path>$PROJECT_DIR$/../SimpleDatabaseHelper/out/artifacts/SimpleDatabaseHelper_jar</output-path>
+    <root id="root">
+      <element id="archive" name="SimpleDatabaseHelper.jar">
+        <element id="module-output" name="SimpleDatabaseHelper" />
+      </element>
+      <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.5" />
+    </root>
+  </artifact>
+</component>
