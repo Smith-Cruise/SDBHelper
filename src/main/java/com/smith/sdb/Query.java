@@ -66,10 +66,7 @@ public class Query {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            Executor.close(connection);
         }
-
     }
 
     public boolean delete(Map<String, Object> map) {
@@ -79,8 +76,6 @@ public class Query {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            Executor.close(connection);
         }
     }
 
@@ -93,8 +88,6 @@ public class Query {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        } finally {
-            Executor.close(connection);
         }
     }
 
@@ -105,8 +98,6 @@ public class Query {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        } finally {
-            Executor.close(connection);
         }
     }
 
@@ -117,8 +108,6 @@ public class Query {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        } finally {
-            Executor.close(connection);
         }
     }
 
@@ -128,8 +117,6 @@ public class Query {
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
-        } finally {
-            Executor.close(connection);
         }
     }
 

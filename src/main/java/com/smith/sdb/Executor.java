@@ -11,16 +11,6 @@ import java.util.Map;
  */
 public class Executor {
 
-    static void close(Connection connection) {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     static void insert(Connection connection, String TABLE_NAME, Map<String, Object> map) throws SQLException {
         if (map.size() == 0)
             throw new SQLException("MapField is not defined");
