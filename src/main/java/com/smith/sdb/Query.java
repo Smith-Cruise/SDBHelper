@@ -69,9 +69,11 @@ public class Query {
         }
     }
 
-    public boolean delete(Map<String, Object> map) {
+    public boolean delete() {
         try {
-            Executor.delete(connection, tableName, map);
+            if (whereMap == null)
+                throw new SQLException("where condition is not defined");
+            Executor.delete(connection, tableName, whereMap);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

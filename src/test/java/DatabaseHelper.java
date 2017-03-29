@@ -24,7 +24,7 @@ public class DatabaseHelper {
         }
     }
 
-    protected static Connection getConnection() {
+    static Connection getConnection() {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -35,5 +35,13 @@ public class DatabaseHelper {
         return connection;
     }
 
-
+    static void close(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

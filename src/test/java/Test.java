@@ -34,7 +34,7 @@ public class Test {
         Query query = new Query();
         Map<String, Object> map = new HashMap<>();
         map.put("name", "danny");
-        query.setConnection(DatabaseHelper.getConnection()).table("comment").delete(map);
+        query.setConnection(DatabaseHelper.getConnection()).table("comment").where(map).delete();
     }
 
     private void update() {
