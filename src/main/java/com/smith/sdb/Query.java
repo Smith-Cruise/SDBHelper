@@ -122,6 +122,17 @@ public class Query {
         }
     }
 
+    public int count() {
+        try {
+            return Executor.count(connection, tableName, whereMap);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            Executor.close(connection);
+        }
+    }
+
     private String buildLimit() {
         return (page-1)*limit+","+limit;
     }

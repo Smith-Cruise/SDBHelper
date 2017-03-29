@@ -111,6 +111,17 @@ public class Executor {
         return executeQuery(connection, sql, objects);
     }
 
+    static int count(Connection connection, String TABLE_NAME, Map<String, Object> where) throws SQLException {
+        String[] selectField = new String[1];
+        selectField[0] = "count(*)";
+        ResultSet rs = select(connection, TABLE_NAME, selectField, where, null, null);
+        int num = 0;
+        while (rs.next()) {
+            num = rs.getInt(1);
+        }
+        return num;
+    }
+
     private static void execute(Connection connection, String sql, Object[] objects) throws SQLException {
         if (connection == null)
             throw new SQLException("connection is null");

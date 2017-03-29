@@ -17,7 +17,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        new Test().select();
+        new Test().count();
     }
 
     // test ok
@@ -53,5 +53,10 @@ public class Test {
         for (TestEntity t: testList) {
             System.out.println(t.getName());
         }
+    }
+
+    private void count() {
+        Query query = new Query();
+        System.out.println(query.setConnection(DatabaseHelper.getConnection()).table("comment").count());
     }
 }

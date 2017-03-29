@@ -72,7 +72,11 @@ public class Builder extends BaseConfig {
             selectCondition.append('*');
         } else {
             for (String s: selectFields) {
-                selectCondition.append("`"+s+"`,");
+                // judge is count(*)
+                if (s.equals("count(*)"))
+                    selectCondition.append("count(*),");
+                else
+                    selectCondition.append("`"+s+"`,");
             }
             selectCondition.deleteCharAt(selectCondition.length()-1);
         }
