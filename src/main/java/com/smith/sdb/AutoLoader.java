@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,17 +15,23 @@ import java.util.List;
 public class AutoLoader {
 
     static <E> List<E> loadList(ResultSet rs, Class<E> c) {
-        ArrayList<E> list = new ArrayList<E>();
+        LinkedList<E> list = new LinkedList<E>();
+        int length = 0;
         Field[] fields = c.getDeclaredFields();
         try {
             while (rs.next()) {
                 E objectCopy = getObject(rs,fields,c);
                 list.add(objectCopy);
+                length++;
             }
         }  catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return list;
+
+        if (length ==0)
+            return null;
+        else
+            return list;
     }
 
     static <E> E loadEntity(ResultSet rs,Class<E> c) {

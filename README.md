@@ -20,9 +20,9 @@ map.put("message", "hello world");
 map.put("dateline", 123123213);    
 
 boolean result = query
-.setConnection(DatabaseHelper.getConnection())
-.table("comment")
-.insert(map);
+    .setConnection(DatabaseHelper.getConnection())
+    .table("comment")
+    .insert(map);
 ```
 ###### delete | 删除数据
 ```java
@@ -34,10 +34,10 @@ map.put("name", "danny");
 
 
 boolean result = query
-.setConnection(DatabaseHelper.getConnection())
-.table("comment")
-.where(map)
-.delete();
+    .setConnection(DatabaseHelper.getConnection())
+    .table("comment")
+    .where(map)
+    .delete();
 ```
 ###### update  | 更新
 ```java
@@ -50,37 +50,37 @@ update.put("message", "hello");
 
 
 boolean result = query
-.setConnection(DatabaseHelper.getConnection())
-.table("comment")
-.where(where)
-.update(update);
+    .setConnection(DatabaseHelper.getConnection())
+    .table("comment")
+    .where(where)
+    .update(update);
 ```
 ###### query
 ```
 // basic
 Query query = new Query();
 List<TestEntity> testList = query
-.setConnection(DatabaseHelper.getConnection())
-.table("comment")
-.selectList(TestEntity.class);
+    .setConnection(DatabaseHelper.getConnection())
+    .table("comment")
+    .selectList(TestEntity.class);
 
 // advanced
 Query query = new Query();
 List<TestEntity>testList = query
-.setConnection(DatabaseHelper.getConnection())
-.table("comment")
-.where(condition)
-.order("dateline desc")
-.selectList(TestEntity.class);
+    .setConnection(DatabaseHelper.getConnection())
+    .table("comment")
+    .where(condition)
+    .order("dateline desc")
+    .selectList(TestEntity.class);
 
 // other
 Query query = new Query();
 TestEntity entity = query
-.setConnection(DatabaseHelper.getConnection())
-.table("comment")
-.where(condition)
-.order("dateline desc")
-.select(TestEntity.class);
+    .setConnection(DatabaseHelper.getConnection())
+    .table("comment")
+    .where(condition)
+    .order("dateline desc")
+    .select(TestEntity.class);
 ```
 ## Example Code | 示例代码
 ###### DatabaseHelper.java
