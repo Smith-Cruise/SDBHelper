@@ -1,5 +1,4 @@
-import com.smith.sdb.Builder;
-import com.smith.sdb.Query;
+import com.smith.sdb.query.Query;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,46 +16,78 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        new Test().count();
-    }
-
-    // test ok
-    private void insert() {
-        Query query = new Query();
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "danny");
-        map.put("message", "hello world");
-        map.put("dateline", 123123213);
-        query.setConnection(DatabaseHelper.getConnection()).table("comment").insert(map);
-    }
-
-    private static void delete() {
-        Query query = new Query();
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "danny");
-        query.setConnection(DatabaseHelper.getConnection()).table("comment").where(map).delete();
-    }
-
-    private void update() {
-        Query query = new Query();
-        Map<String, Object> where = new HashMap<>();
-        where.put("id", 1);
-        where.put("name", "smith");
-        Map<String, Object> update = new HashMap<>();
-        update.put("message", "hello");
-        query.setConnection(DatabaseHelper.getConnection()).table("comment").where(where).update(update);
-    }
-
-    private void select() {
-        Query query = new Query();
-        List<TestEntity> testList = query.setConnection(DatabaseHelper.getConnection()).table("comment").selectList(TestEntity.class);
-        for (TestEntity t: testList) {
-            System.out.println(t.getName());
+        for (int i=0; i<500; i++) {
+            new Thread(()-> {
+                new Test().count();
+            }).start();
         }
     }
 
-    private void count() {
+    // test ok
+    public void insert() {
         Query query = new Query();
-        System.out.println(query.setConnection(DatabaseHelper.getConnection()).table("comment").count());
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", Thread.currentThread().getName());
+        map.put("message", "insert test");
+        map.put("dateline", System.currentTimeMillis());
+        try {
+            query.setConnection().table("comment").insert(map);
+            query.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // test ok
+    public void delete() {
+        Query query = new Query();
+        Map<String, Object> map = new HashMap<>();
+        map.put("dateline", "1491900854776");
+        try {
+            query.setConnection().table("comment").where(map).delete();
+            query.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // test ok
+    public void update() {
+        Query query = new Query();
+        Map<String, Object> where = new HashMap<>();
+        where.put("id", 2);
+        Map<String, Object> update = new HashMap<>();
+        update.put("message", "update");
+        try {
+            query.setConnection().table("comment").where(where).update(update);
+            query.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // test ok
+    private void select() {
+        try {
+            Query query = new Query();
+            List<TestEntity> testList = query.setConnection().table("comment").selectList(TestEntity.class);
+            for (TestEntity t: testList) {
+                System.out.println(t.getName());
+            }
+            query.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //test ok
+    public void count() {
+        try {
+            Query query = new Query();
+            System.out.println(query.setConnection().table("comment").count());
+            query.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

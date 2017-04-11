@@ -1,4 +1,4 @@
-package com.smith.sdb;
+package com.smith.sdb.query;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

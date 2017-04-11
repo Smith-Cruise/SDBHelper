@@ -1,4 +1,4 @@
-package com.smith.sdb;
+package com.smith.sdb.query;
 
 /**
  * Created by Smith on 2017/3/28.
