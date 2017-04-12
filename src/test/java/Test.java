@@ -31,7 +31,10 @@ public class Test {
         map.put("message", "insert test");
         map.put("dateline", System.currentTimeMillis());
         try {
-            query.setConnection().table("comment").insert(map);
+            query
+                    .setConnection()
+                    .table("comment")
+                    .insert(map);
             query.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,7 +47,11 @@ public class Test {
         Map<String, Object> map = new HashMap<>();
         map.put("dateline", "1491900854776");
         try {
-            query.setConnection().table("comment").where(map).delete();
+            query
+                    .setConnection()
+                    .table("comment")
+                    .where(map)
+                    .delete();
             query.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +66,11 @@ public class Test {
         Map<String, Object> update = new HashMap<>();
         update.put("message", "update");
         try {
-            query.setConnection().table("comment").where(where).update(update);
+            query
+                    .setConnection()
+                    .table("comment")
+                    .where(where)
+                    .update(update);
             query.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +81,10 @@ public class Test {
     private void select() {
         try {
             Query query = new Query();
-            List<TestEntity> testList = query.setConnection().table("comment").selectList(TestEntity.class);
+            List<TestEntity> testList = query
+                    .setConnection()
+                    .table("comment")
+                    .selectList(TestEntity.class);
             for (TestEntity t: testList) {
                 System.out.println(t.getName());
             }
